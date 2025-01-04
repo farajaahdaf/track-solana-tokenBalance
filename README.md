@@ -1,6 +1,6 @@
 # Solana Wallet Balance Tracker  
 
-A simple yet powerful Node.js application to track token balances and net worth of any Solana wallet.  
+A simple yet powerful Node.js Web App to track token balances and net worth of any Solana wallet.  
 
 ---
 
@@ -30,8 +30,22 @@ A simple yet powerful Node.js application to track token balances and net worth 
 
 ---
 
-## Installation  
+## Installation
 1. Clone this repository:  
    ```bash
    git clone https://github.com/yourusername/solana-wallet-balance-tracker.git
    cd solana-wallet-balance-tracker
+
+2. Install dependencies:
+   ```bash
+   npm install
+
+3. Start the application:
+   ```bash
+   node app.js
+
+## Screenshots
+![image](https://github.com/user-attachments/assets/d7624d19-0551-4bd7-8c0b-2a6d2a1dc068)
+![image](https://github.com/user-attachments/assets/7edde784-e9d6-4c4e-8eee-faee8efcf93c)
+
+
