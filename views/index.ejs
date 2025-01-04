@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Solana Wallet</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Simple Solana Wallet Tracker</h1>
+        </header>
+        <main>
+            <form class="wallet-form" method="GET" action="/">
+                <input 
+                    type="text" 
+                    name="address" 
+                    placeholder="Enter Solana wallet address"
+                    value="<%= locals.address || '' %>"
+                    required
+                >
+                <button type="submit" class="btn">Track Wallet</button>
+            </form>
+
+            <% if (locals.message) { %>
+                <div class="message"><%= message %></div>
+            <% } %>
+
+            <% if (tokens && tokens.length > 0) { %>
+                <div class="summary">
+                    <div class="total-worth">
+                        <h2>Total Value :</h2>
+                        <% 
+                        let totalWorthUSD = 0;
+                        tokens.forEach(token => {
+                            totalWorthUSD += token.amount * Number(priceMap[token.mint] || 0);
+                        });
+                        let totalWorthIDR = totalWorthUSD * usdToIdrRate;
+                        %>
+                        <p class="usd">$<%= totalWorthUSD.toFixed(2) %> USD</p>
+                        <p class="idr">Rp <%= totalWorthIDR.toLocaleString('id-ID') %> IDR</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="tokenDistribution"></canvas>
+                    </div>
+                </div>
+
+                <div class="token-list">
+                    <h2>Token Breakdown</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Token Name</th>
+                                <th>Token Address</th>
+                                <th>Amount</th>
+                                <th>Price (USD)</th>
+                                <th>Value (USD)</th>
+                                <th>Value (IDR)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% tokens.forEach((token, index) => { %>
+                                <tr>
+                                    <td><%= nameMap[token.mint] || "Unknown Token" %></td>
+                                    <td class="token-address"><%= token.mint %></td>
+                                    <td><%= token.amount.toFixed(2) %></td>
+                                    <td>$<%= Number(priceMap[token.mint] || 0).toFixed(4) %></td>
+                                    <td>$<%= (token.amount * Number(priceMap[token.mint] || 0)).toFixed(2) %></td>
+                                    <td>Rp <%= ((token.amount * Number(priceMap[token.mint] || 0)) * usdToIdrRate).toLocaleString('id-ID') %></td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+
+                <script>
+                    const ctx = document.getElementById('tokenDistribution').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: [<% tokens.forEach((token, index) => { %>'<%= nameMap[token.mint] || token.mint %>',<% }); %>],
+                            datasets: [{
+                                data: [<% tokens.forEach((token) => { %><%= token.amount * Number(priceMap[token.mint] || 0) %>,<% }); %>],
+                                backgroundColor: [
+                                    '#FF5733', '#33FF57', '#3357FF', '#F0F033', '#FF33F0', '#33F0FF',
+                                    '#FF5733', '#5733FF', '#F033FF', '#33FF5F', '#FF5F33', '#5F33FF'
+                                ]
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            title: {
+                                display: true,
+                                text: 'Token Distribution',
+                                fontColor: '#ffffff'
+                            },
+                            legend: {
+                                labels: {
+                                    fontColor: '#ffffff'
+                                }
+                            }
+                        }
+                    });
+                </script>
+            <% } %>
+        </main>
+        <footer>
+            <p>Data updated: <%= new Date().toLocaleString() %></p>
+        </footer>
+    </div>
+</body>
+</html>

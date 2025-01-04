@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+.wallet-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.wallet-form input {
+    flex: 1;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid #2a2a2a;
+    background-color: #1a1a1a;
+    color: #fff;
+    font-size: 14px;
+}
+
+.wallet-form input:focus {
+    outline: none;
+    border-color: #3357FF;
+}
+
+.message {
+    padding: 12px;
+    border-radius: 6px;
+    background-color: #1a1a1a;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.total-worth {
+    margin-bottom: 20px;
+}
+
+.total-worth h2 {
+    font-size: 16px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.total-worth .usd {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.total-worth .idr {
+    color: #888;
+    font-size: 14px;
+}
+
+.btn {
+    background-color: #1e1e1e;
+    border: none;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn:hover {
+    background-color: #2a2a2a;
+}
+
+.token-list {
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.token-list h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    padding: 16px;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+th {
+    color: #888;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+td {
+    font-size: 14px;
+}
+
+tr:hover {
+    background-color: #222;
+}
+
+.chart-container {
+    width: 300px;
+    height: 300px;
+    margin-left: 20px;
+}
+
+footer {
+    margin-top: 20px;
+    color: #666;
+    font-size: 12px;
+}
+
+.token-address {
+    color: #666;
+    font-size: 14px;
+    word-break: break-all;
+}
